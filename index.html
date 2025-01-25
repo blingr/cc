@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>Modernes & Interaktives Lernen - Komplexe Szenarien</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      color: #333;
+      background-color: #fafafa;
+    }
+    header {
+      background: #222;
+      color: #fff;
+      padding: 20px;
+      text-align: center;
+    }
+    header h1 {
+      margin: 0;
+      font-weight: normal;
+      font-size: 1.8rem;
+    }
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      background: #333;
+    }
+    nav button {
+      border: none;
+      outline: none;
+      color: #fff;
+      padding: 15px 20px;
+      cursor: pointer;
+      font-size: 1rem;
+      background: #333;
+      transition: background 0.3s;
+      margin: 2px;
+    }
+    nav button:hover {
+      background: #555;
+    }
+    main {
+      display: grid;
+      grid-template-columns: 1fr;
+      margin: 20px auto;
+      width: 90%;
+      max-width: 1000px;
+    }
+    section {
+      display: none;
+      background: #fff;
+      border-radius: 4px;
+      margin-bottom: 20px;
+      padding: 20px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    section.active {
+      display: block;
+    }
+    h2 {
+      margin-top: 0;
+      margin-bottom: 10px;
+      font-size: 1.4rem;
+    }
+    p {
+      line-height: 1.6;
+    }
+    .box {
+      margin-top: 20px;
+      padding: 15px;
+      border-radius: 4px;
+      background-color: #f9f9f9;
+      transition: transform 0.2s;
+    }
+    .box:hover {
+      transform: scale(1.01);
+    }
+    .hint {
+      background: #eef8ff;
+      border-left: 5px solid #1976d2;
+      padding: 10px;
+      margin-top: 10px;
+      font-size: 0.9rem;
+      white-space: pre-line;
+    }
+    .scenario {
+      margin-bottom: 15px;
+    }
+    .choice {
+      margin-top: 10px;
+    }
+    .choice button {
+      margin-right: 6px;
+      margin-bottom: 6px;
+      background: #1976d2;
+      color: #fff;
+      border: none;
+      padding: 8px 12px;
+      cursor: pointer;
+      border-radius: 4px;
+      transition: background 0.3s;
+    }
+    .choice button:hover {
+      background: #12548f;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 15px;
+    }
+    table th, table td {
+      border: 1px solid #ccc;
+      padding: 8px;
+      text-align: left;
+    }
+    table th {
+      background: #f7f7f7;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Modernes & Interaktives Lernen - Komplexe Szenarien</h1>
+</header>
+
+<nav>
+  <button onclick="showSection('phishing')">Phishing</button>
+  <button onclick="showSection('socialEng')">Social Engineering</button>
+  <button onclick="showSection('pwKnacken')">Passwort-Knacken</button>
+  <button onclick="showSection('malware')">Malware-Analyse</button>
+  <button onclick="showSection('fallacies')">Logische Fehlschlüsse</button>
+  <button onclick="showSection('fakeNews')">Fake News</button>
+  <button onclick="showSection('dataAnalysis')">Datenanalyse</button>
+  <button onclick="showSection('decisionMaking')">Entscheidungsfindung</button>
+</nav>
+
+<main>
+  <!-- CRIMINAL THINKING 1: Phishing -->
+  <section id="phishing" class="active">
+    <h2>Phishing-Simulation (Criminal Thinking)</h2>
+    <p>Gefälschte E-Mails nutzen oft dringliche Sprache und dubiose Links, um Nutzer zur Herausgabe von Daten zu bewegen. Unten findest du verschiedene Beispiele.</p>
+    <div class="box">
+      <div class="scenario">
+        <p><b>E-Mail 1:</b> Absender: secure@kontoverbinden.com<br>
+        Betreff: "WICHTIG: Ihr Konto wird in 24h gesperrt!"</p>
+        <p>Sehr geehrter Kunde,<br>
+        Wir haben ungewöhnliche Aktivitäten festgestellt. Bitte klicken Sie hier: 
+        <a href="#" onclick="phishClick('phishResult1')">Login-Seite</a>, um Ihr Konto zu reaktivieren!</p>
+        <div id="phishResult1" class="hint"></div>
+      </div>
+
+      <div class="scenario">
+        <p><b>E-Mail 2:</b> Absender: rechnung@softwarerechnung.org<br>
+        Betreff: "Ihre offene Rechnung - Jetzt begleichen!"</p>
+        <p>Guten Tag,<br>
+        Bitte begleichen Sie Ihre Rechnung noch heute: 
+        <a href="#" onclick="phishClick('phishResult2')">Rechnungs-Download</a>.</p>
+        <div id="phishResult2" class="hint"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CRIMINAL THINKING 2: Social Engineering -->
+  <section id="socialEng">
+    <h2>Social-Engineering-Szenario (Criminal Thinking)</h2>
+    <p>Angreifer versuchen, an vertrauliche Informationen zu gelangen, indem sie Vertrauen erwecken oder Druck ausüben. Hier zwei Gesprächssimulationen:</p>
+    <div class="box">
+      <div class="scenario" id="callA">
+        <p><b>Telefonat A:</b> Jemand gibt sich als Kollege aus einem anderen Büro aus:</p>
+        <p><b>Anrufer:</b> "Hallo, hier ist Markus aus der Personalabteilung. Wir führen ein Systemupgrade durch und brauchen schnell dein Login. Kannst du mir eben deinen Benutzernamen und dein Passwort sagen?"</p>
+        <div class="choice">
+          <button onclick="answerCall('callA','pwRaus')">Ich gebe meine Daten heraus</button>
+          <button onclick="answerCall('callA','misstrauisch')">Ich bleibe misstrauisch und lehne ab</button>
+          <button onclick="answerCall('callA','rueckruf')">Ich verlange eine offizielle Rückrufnummer</button>
+        </div>
+        <div class="hint" id="callAResult"></div>
+      </div>
+
+      <div class="scenario" id="callB">
+        <p><b>Telefonat B:</b> Ein angeblicher Techniker ruft an:</p>
+        <p><b>Anrufer:</b> "Hallo, wir haben einen Sicherheitsvorfall in Ihrem Netzwerk gefunden. Ihr Rechner könnte betroffen sein, wir brauchen dringend Ihre persönliche PIN für die Fernwartung."</p>
+        <div class="choice">
+          <button onclick="answerCall('callB','pwRaus')">Ich gebe die PIN heraus</button>
+          <button onclick="answerCall('callB','misstrauisch')">Ich misstraue dem Anruf</button>
+          <button onclick="answerCall('callB','rueckruf')">Ich bitte um eine interne Ticketnummer</button>
+        </div>
+        <div class="hint" id="callBResult"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CRIMINAL THINKING 3: Passwort-Knacken -->
+  <section id="pwKnacken">
+    <h2>Passwort-Knacken (Criminal Thinking)</h2>
+    <p>Brute-Force- und Dictionary-Angriffe versuchen, Passwörter durch massenhafte Versuche zu erraten.</p>
+    <div class="box">
+      <label for="pwInput">Gib dein Passwort ein (Demo):</label>
+      <input id="pwInput" type="text" placeholder="z.B. 123456 oder SuperSecurePass!">
+      <button onclick="simulatePwCrack()">Angriff simulieren</button>
+      <div class="hint" id="pwResult"></div>
+    </div>
+    <p>Passwort-Beispiele für Tests:</p>
+    <ul>
+      <li>"12345"</li>
+      <li>"password"</li>
+      <li>"P@ssw0rd123"</li>
+      <li>"Sup3rL4ng&Komplex!"</li>
+    </ul>
+  </section>
+
+  <!-- CRIMINAL THINKING 4: Malware-Analyse -->
+  <section id="malware">
+    <h2>Malware-Analyse (Criminal Thinking)</h2>
+    <p>Eine Sandbox-Umgebung überwacht und protokolliert, was eine Malware im System verändert. Starte die Simulation:</p>
+    <div class="box">
+      <button onclick="startMalwareAnalysis()">Analyse-Schritte durchlaufen</button>
+      <div class="hint" id="malwareOutput"></div>
+    </div>
+  </section>
+
+  <!-- CRITICAL THINKING 1: Logische Fehlschlüsse -->
+  <section id="fallacies">
+    <h2>Logische Fehlschlüsse erkennen (Critical Thinking)</h2>
+    <p>Fehlschlüsse sind Trugschlüsse in Argumenten. Unten zwei Beispiele:</p>
+    <div class="box" id="fallacyA">
+      <p><b>Aussage A:</b> "Du hast dich gestern geirrt, also kannst du heute auch nicht Recht haben."</p>
+      <div class="choice">
+        <button onclick="checkFallacy('fallacyA','adHominem')">Ad-hominem-Angriff</button>
+        <button onclick="checkFallacy('fallacyA','strawman')">Strohmann-Argument</button>
+        <button onclick="checkFallacy('fallacyA','emotions')">Appell an Emotionen</button>
+        <button onclick="checkFallacy('fallacyA','slippery')">Dammbruch-Argument</button>
+      </div>
+      <div class="hint" id="fallacyAResult"></div>
+    </div>
+    <div class="box" id="fallacyB">
+      <p><b>Aussage B:</b> "Wenn wir jetzt damit anfangen, etwas später aufzustehen, werden bald alle ihren Job vernachlässigen, und die Wirtschaft bricht zusammen."</p>
+      <div class="choice">
+        <button onclick="checkFallacy('fallacyB','slippery')">Dammbruch-Argument</button>
+        <button onclick="checkFallacy('fallacyB','strawman')">Strohmann-Argument</button>
+        <button onclick="checkFallacy('fallacyB','adHominem')">Ad-hominem-Angriff</button>
+        <button onclick="checkFallacy('fallacyB','emotions')">Appell an Emotionen</button>
+      </div>
+      <div class="hint" id="fallacyBResult"></div>
+    </div>
+  </section>
+
+  <!-- CRITICAL THINKING 2: Fake News -->
+  <section id="fakeNews">
+    <h2>Fake News entlarven (Critical Thinking)</h2>
+    <p>Falsche Nachrichten wirken oft sensationell. Prüfe die Glaubwürdigkeit einer Meldung:</p>
+    <div class="box">
+      <p><b>Nachricht:</b> "Sensationsfund: Forscher entdecken Heilmittel gegen alle Krankheiten, ganz ohne Nebenwirkungen!"</p>
+      <p><b>Quelle:</b> "WeltWunder-Magazin (unbekannt)"</p>
+      <div class="choice">
+        <button onclick="fakeNewsAction('vertrauen')">Ich glaube sofort daran</button>
+        <button onclick="fakeNewsAction('recherche')">Ich recherchiere die Quelle</button>
+        <button onclick="fakeNewsAction('zweifel')">Ich halte es für Fake News</button>
+      </div>
+      <div class="hint" id="fakeNewsResult"></div>
+    </div>
+    <p>Weiteres Beispiel: "Riesiges Monster in einem Baggersee gesichtet!" – wie würdest du reagieren?</p>
+  </section>
+
+  <!-- CRITICAL THINKING 3: Datenanalyse und -visualisierung -->
+  <section id="dataAnalysis">
+    <h2>Datenanalyse und -visualisierung (Critical Thinking)</h2>
+    <p>Ein Datensatz zur Auswertung. Wähle ein Diagramm zur Darstellung:</p>
+    <div class="box">
+      <p><b>Datensatz:</b> Produkte im Monat verkauft (Jan=50, Feb=100, Mär=200, Apr=75)</p>
+      <p>Wähle einen Diagrammtyp:</p>
+      <select id="chartType">
+        <option value="">- Bitte wählen -</option>
+        <option value="balken">Balkendiagramm</option>
+        <option value="linie">Liniendiagramm</option>
+        <option value="kuchen">Kuchendiagramm</option>
+      </select>
+      <button onclick="renderChart()">Diagramm erzeugen</button>
+      <div class="hint" id="chartOutput"></div>
+    </div>
+    <p>Weitere Beispiele: <br>
+      • Vergleich von Umsätzen über mehrere Jahre.<br>
+      • Analyse von Kundenbewertungen nach Sternen.
+    </p>
+  </section>
+
+  <!-- CRITICAL THINKING 4: Entscheidungsfindung -->
+  <section id="decisionMaking">
+    <h2>Entscheidungsfindung unter Unsicherheit (Critical Thinking)</h2>
+    <p>Manchmal muss man handeln, ohne alle Informationen zu kennen. Beispiele:</p>
+    <div class="box">
+      <div class="scenario">
+        <p><b>Szenario A:</b> Ein Zulieferer könnte streiken, was den Nachschub gefährdet. Was tust du?</p>
+        <div class="choice">
+          <button onclick="decisionAction('auffuellen')">Lager jetzt auffüllen</button>
+          <button onclick="decisionAction('abwarten')">Abwarten und hoffen</button>
+        </div>
+        <div class="hint" id="decisionAResult"></div>
+      </div>
+      <div class="scenario">
+        <p><b>Szenario B:</b> Du führst ein IT-Projekt durch, weißt aber nicht, ob alle Funktionen rechtzeitig fertig werden.</p>
+        <div class="choice">
+          <button onclick="decisionAction('featureCut')">Einige Features streichen</button>
+          <button onclick="decisionAction('full')">Alles einplanen (Risiko für Verspätung)</button>
+        </div>
+        <div class="hint" id="decisionBResult"></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<script>
+  // Navigation
+  function showSection(id) {
+    document.querySelectorAll('section').forEach(sec => sec.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+  }
+
+  // STARTE MIT PHISHING
+  showSection('phishing');
+
+  // --- PHISHING
+  function phishClick(resultId) {
+    const el = document.getElementById(resultId);
+    el.textContent = "Du hast auf den Link geklickt! Bei einer echten Phishing-Seite kann das Passwörter oder Daten stehlen.";
+  }
+
+  // --- SOCIAL ENGINEERING
+  function answerCall(callId, choice) {
+    const resultEl = document.getElementById(callId + "Result");
+    switch(choice) {
+      case 'pwRaus':
+        resultEl.textContent = "Du hast dem Anrufer deine Daten gegeben. Dies könnte zu Missbrauch führen.";
+        break;
+      case 'misstrauisch':
+        resultEl.textContent = "Du bleibst misstrauisch und verweigerst die Herausgabe von Infos. Sicherer Ansatz!";
+        break;
+      case 'rueckruf':
+        resultEl.textContent = "Du verlangst eine Nummer oder Bestätigung. So kann ein Social-Engineer oft enttarnt werden.";
+        break;
+    }
+  }
+
+  // --- PASSWORT-KNACKEN
+  function simulatePwCrack() {
+    const pw = document.getElementById('pwInput').value;
+    const res = document.getElementById('pwResult');
+    if(!pw) {
+      res.textContent = "Bitte gib ein Passwort ein.";
+      return;
+    }
+    // Einfache Abschätzung
+    const length = pw.length;
+    // Angenommene Zeichenvielfalt ~ 50
+    let combos = Math.pow(50, length);
+    let timeSeconds = combos / 100000; 
+    // text ausgeben
+    if(timeSeconds < 1) {
+      res.textContent = "Dein Passwort wurde beinahe augenblicklich geknackt!";
+    } else if(timeSeconds < 60) {
+      res.textContent = "Knacken dauert etwa " + Math.round(timeSeconds) + " Sekunden.";
+    } else if(timeSeconds < 3600) {
+      res.textContent = "Knacken dauert ca. " + Math.round(timeSeconds / 60) + " Minuten.";
+    } else if(timeSeconds < 86400) {
+      res.textContent = "Knacken dauert ca. " + Math.round(timeSeconds / 3600) + " Stunden.";
+    } else {
+      res.textContent = "Knacken könnte mehr als " + Math.round(timeSeconds / 86400) + " Tage dauern. Besser, aber immer noch unsicher, wenn Rechenleistung steigt.";
+    }
+  }
+
+  // --- MALWARE-ANALYSE
+  let steps = [
+    "Malware führt Initialisierung aus.",
+    "Malware kontrolliert Betriebssystemversion.",
+    "Malware kopiert sich in Systemordner.",
+    "Erstellt Registry-Einträge für Autostart.",
+    "Verbindet sich mit Command-and-Control-Server.",
+    "Sandbox erkennt auffälliges Verhalten und blockiert es."
+  ];
+  let stepIndex = 0;
+  function startMalwareAnalysis() {
+    const output = document.getElementById('malwareOutput');
+    if(stepIndex < steps.length) {
+      output.textContent += steps[stepIndex] + "\n";
+      stepIndex++;
+    } else {
+      output.textContent += "Analyse beendet: Malware isoliert.\n";
+    }
+  }
+
+  // --- LOGISCHE FEHLSCHLÜSSE
+  function checkFallacy(sectionId, choice) {
+    const resultEl = document.getElementById(sectionId + "Result");
+    if(sectionId === 'fallacyA') {
+      // Aussage A => "Ad-hominem-Angriff"
+      if(choice === 'adHominem') {
+        resultEl.textContent = "Richtig. Man greift die Person an, statt ihr Argument zu entkräften.";
+      } else {
+        resultEl.textContent = "Das passt nicht ganz. Versuche es erneut.";
+      }
+    } else {
+      // Aussage B => "Dammbruch-Argument"
+      if(choice === 'slippery') {
+        resultEl.textContent = "Korrekt! Das ist ein Dammbruch-Argument, das eine übertrieben schlimme Kette von Ereignissen andeutet.";
+      } else {
+        resultEl.textContent = "Das passt nicht. Bitte noch einmal versuchen.";
+      }
+    }
+  }
+
+  // --- FAKE NEWS
+  function fakeNewsAction(action) {
+    const el = document.getElementById('fakeNewsResult');
+    if(action === 'vertrauen') {
+      el.textContent = "Du glaubst es sofort. Ohne Überprüfung ist das sehr riskant, denn Fake News sind oft reißerisch.";
+    } else if(action === 'recherche') {
+      el.textContent = "Du recherchierst die Quelle. Guter Ansatz, um die Glaubwürdigkeit zu prüfen.";
+    } else {
+      el.textContent = "Du hältst es für Fake News. Das kann richtig sein, aber belege es idealerweise durch Quellen.";
+    }
+  }
+
+  // --- DATENANALYSE
+  function renderChart() {
+    const chartType = document.getElementById('chartType').value;
+    const el = document.getElementById('chartOutput');
+    if(!chartType) {
+      el.textContent = "Bitte wähle einen Diagrammtyp aus.";
+      return;
+    }
+    switch(chartType) {
+      case 'balken':
+        el.textContent = "Balkendiagramm: | Jan=50 || Feb=100 || Mär=200 || Apr=75 |";
+        break;
+      case 'linie':
+        el.textContent = "Liniendiagramm: Jan (50) → Feb (100) → Mär (200) → Apr (75).";
+        break;
+      case 'kuchen':
+        el.textContent = "Kuchendiagramm: Jan ~ 10%, Feb ~ 20%, Mär ~ 40%, Apr ~ 15% (Werte gerundet).";
+        break;
+    }
+  }
+
+  // --- ENTSCHEIDUNGSFINDUNG
+  function decisionAction(action) {
+    // Zwei Cases: "auffuellen" / "abwarten" + "featureCut"/"full"
+    if(action === 'auffuellen') {
+      document.getElementById('decisionAResult').textContent =
+        "Du kaufst jetzt große Mengen ein. Risiken: Hohe Lagerkosten oder Geldbindung. Vorteil: Sicherheit bei Engpässen.";
+    } else if(action === 'abwarten') {
+      document.getElementById('decisionAResult').textContent =
+        "Du wartest und hoffst auf stabile Lage. Risiko: Fällt der Zulieferer aus, könnte es teurer werden oder Lieferstopps geben.";
+    } else if(action === 'featureCut') {
+      document.getElementById('decisionBResult').textContent =
+        "Du kürzt Features. Das Projekt hat weniger Funktionen, wird aber pünktlicher fertig. Kunden könnten enttäuscht sein.";
+    } else {
+      document.getElementById('decisionBResult').textContent =
+        "Du behältst alle Features. Möglicherweise verzögert sich das Projekt, aber der Funktionsumfang bleibt hoch.";
+    }
+  }
+</script>
+
+</body>
+</html>
